@@ -29,8 +29,7 @@ public class List {
             addToHead(value);
         } else {
             ListItem current = getInternal(position - 1);
-            ListItem newItem = new ListItem(value, current.nextItem);
-            current.nextItem = newItem;
+            current.nextItem = new ListItem(value, current.nextItem);
         }
     }
 
