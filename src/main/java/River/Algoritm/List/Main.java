@@ -44,17 +44,26 @@ public class Main {
             System.out.println("\nВведите команду:");
             switch (reader.readLine()) {
                 case "compare":
-                    System.out.println("Введите элементы Списка 1 (целые числа через пробел):");
-                    List list1 = listInput();
+                    List list1;
+                    List list2;
+                    try {
+                        System.out.println("Введите элементы Списка 1 (целые числа через пробел):");
+                        list1 = listInput();
 
-                    System.out.println("Введите элементы Списка 2 (целые числа через пробел):");
-                    List list2 = listInput();
+                        System.out.println("Введите элементы Списка 2 (целые числа через пробел):");
+                        list2 = listInput();
+                    } catch (NumberFormatException e){
+                        System.out.println("Некорректный ввод списка\n");
+                        break;
+                    }
 
                     List.compareAndPrintResult(list1, list2);
                     System.out.println();
                     break;
-                case "exit": return;
+                case "exit":
+                    return;
                 default:
+                    System.out.println();
             }
         }
     }
@@ -88,6 +97,9 @@ public class Main {
                     break;
                 case "find":
                     uiListFind(list, reader);
+                    break;
+                case "get":
+                    uiListGet(list, reader);
                     break;
                 case "isEmpty":
                     if (list.isEmpty()) {
@@ -133,23 +145,45 @@ public class Main {
 
     private static void uiListAddToEnd(List list, BufferedReader reader) throws IOException {
         System.out.println("Введите значение элемента(целое число):");
-        list.addToEnd(Integer.parseInt(reader.readLine()));
+        int value;
+        try {
+            value = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+        list.addToEnd(value);
         System.out.println("Элемент добавлен в список");
     }
 
     private static void uiListAddToHead(List list, BufferedReader reader) throws IOException {
         System.out.println("Введите значение элемента(целое число):");
-        list.addToHead(Integer.parseInt(reader.readLine()));
+        int value;
+        try {
+            value = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+        list.addToHead(value);
         System.out.println("Элемент добавлен в список");
     }
 
     private static void uiListAddToPosition(List list, BufferedReader reader) throws IOException {
-        System.out.println("Введите позицию для вставки элемента (целое число от 0 до n, n - количество элементов в списке):");
-        int position = Integer.parseInt(reader.readLine());
-        System.out.println("Введите значение элемента(целое число):");
+        int position;
+        int value;
+        try {
+            System.out.println("Введите позицию для вставки элемента (целое число от 0 до n, n - количество элементов в списке):");
+            position = Integer.parseInt(reader.readLine());
+            System.out.println("Введите значение элемента(целое число):");
+            value = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
 
         try {
-            list.addToPosition(Integer.parseInt(reader.readLine()), position);
+            list.addToPosition(value, position);
         } catch (NegativePositionException | OutOfRangePositionException e) {
             System.out.println("Введено некорректное значение позиции");
             return;
@@ -178,9 +212,16 @@ public class Main {
     }
 
     private static void uiListDeletePosition(List list, BufferedReader reader) throws IOException {
+        int position;
         System.out.println("Введите позицию для удаления элемента (целое число от 0 до n, n - количество элементов в списке):");
         try {
-            list.deletePosition(Integer.parseInt(reader.readLine()));
+            position = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+        try {
+            list.deletePosition(position);
         } catch (NegativePositionException | OutOfRangePositionException e) {
             if (list.isEmpty()) {
                 System.out.println("Пустой список: удаление невозможно");
@@ -194,12 +235,38 @@ public class Main {
 
     private static void uiListFind(List list, BufferedReader reader) throws IOException {
         System.out.println("Введите значение для поиска:");
-        int findPosition = list.find(Integer.parseInt(reader.readLine()));
+        int value;
+        try {
+            value = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+        int findPosition = list.find(value);
         if (findPosition == -1) {
             System.out.println("Элемент не найден");
         } else {
             System.out.println("Элемент найден на позиции: " + findPosition);
         }
+    }
+
+    private static void uiListGet(List list, BufferedReader reader) throws IOException {
+        int position;
+        int value;
+        System.out.println("Введите позицию элемента (целое число от 0 до n, n - количество элементов в списке):");
+        try {
+            position = Integer.parseInt(reader.readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Некорректный ввод");
+            return;
+        }
+        try {
+            value = list.get(position);
+        } catch (NegativePositionException | OutOfRangePositionException e) {
+            System.out.println("Введено некорректное значение позиции");
+            return;
+        }
+        System.out.println("Значение элемента: " + value);
     }
 
     private static List listInput() throws IOException {
