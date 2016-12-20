@@ -32,7 +32,7 @@ public class Main {
                     System.out.println();
                     break;
                 default:
-                    System.out.println();
+                    System.out.println("Некорректная команда\n");
             }
         }
     }
@@ -56,7 +56,7 @@ public class Main {
 
                         System.out.println("Введите элементы Списка 2 (целые числа через пробел):");
                         list2 = listInput();
-                    } catch (NumberFormatException e){
+                    } catch (NumberFormatException e) {
                         System.out.println("Некорректный ввод списка\n");
                         break;
                     }
@@ -67,7 +67,7 @@ public class Main {
                 case "exit":
                     return;
                 default:
-                    System.out.println();
+                    System.out.println("Некорректная команда\n");
             }
         }
     }
@@ -116,7 +116,10 @@ public class Main {
 
                     break;
                 case "print":
-                    list.print();
+                    if (list.isEmpty()) {
+                        System.out.println("Список пустой: печать невозможна");
+                    } else
+                        list.print();
                     break;
                 case "help":
                     uiListActions();
@@ -129,6 +132,7 @@ public class Main {
                     System.out.println();
                     return;
                 default:
+                    System.out.print("Некорректная команда\n");
             }
         }
     }
@@ -152,12 +156,12 @@ public class Main {
     private static void uiListAddToEnd(List list, BufferedReader reader) throws IOException {
         int value;
 
-        System.out.println("Введите значение элемента(целое число):");
+        System.out.println("Введите значение элемента (целое число):");
 
         try {
             value = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
@@ -168,12 +172,12 @@ public class Main {
     private static void uiListAddToHead(List list, BufferedReader reader) throws IOException {
         int value;
 
-        System.out.println("Введите значение элемента(целое число):");
+        System.out.println("Введите значение элемента (целое число):");
 
         try {
             value = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
@@ -188,17 +192,17 @@ public class Main {
         try {
             System.out.println("Введите позицию для вставки элемента (целое число от 0 до n, n - количество элементов в списке):");
             position = Integer.parseInt(reader.readLine());
-            System.out.println("Введите значение элемента(целое число):");
+            System.out.println("Введите значение элемента (целое число):");
             value = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
         try {
             list.addToPosition(value, position);
         } catch (NegativePositionException | OutOfRangePositionException e) {
-            System.out.println("Введено некорректное значение позиции");
+            System.out.println("Несуществующая позиция: вставка невозможна");
             return;
         }
 
@@ -235,7 +239,7 @@ public class Main {
         try {
             position = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
@@ -245,7 +249,7 @@ public class Main {
             if (list.isEmpty()) {
                 System.out.println("Пустой список: удаление невозможно");
             } else {
-                System.out.println("Введено некорректное значение позиции");
+                System.out.println("Несуществующая позиция: удаление невозможно");
             }
 
             return;
@@ -257,12 +261,12 @@ public class Main {
     private static void uiListFind(List list, BufferedReader reader) throws IOException {
         int value;
 
-        System.out.println("Введите значение для поиска:");
+        System.out.println("Введите значение элемента для поиска (целое число):");
 
         try {
             value = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
@@ -284,14 +288,14 @@ public class Main {
         try {
             position = Integer.parseInt(reader.readLine());
         } catch (NumberFormatException e) {
-            System.out.println("Некорректный ввод");
+            System.out.println("Некорректный ввод: введено не целое число");
             return;
         }
 
         try {
             value = list.get(position);
         } catch (NegativePositionException | OutOfRangePositionException e) {
-            System.out.println("Введено некорректное значение позиции");
+            System.out.println("Несуществующая позиция");
             return;
         }
 
