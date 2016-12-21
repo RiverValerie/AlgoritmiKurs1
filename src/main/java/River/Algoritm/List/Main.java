@@ -92,6 +92,9 @@ public class Main {
                 case "addToPosition":
                     uiListAddToPosition(list, reader);
                     break;
+                case "count":
+                    System.out.println("Количество элементов в списке: " + list.count());
+                    break;
                 case "deleteHead":
                     uiListDeleteHead(list);
                     break;
@@ -141,6 +144,7 @@ public class Main {
         System.out.println("addToEnd - добавление элемента в конец списка");
         System.out.println("addToHead - добавление элемента в начало списка");
         System.out.println("addToPosition - добавление элемента на позицию в списке");
+        System.out.println("count - количество элементов в списке");
         System.out.println("deleteHead - удаление первого элемента списка");
         System.out.println("deleteLast - удаление последнего элемента списка");
         System.out.println("deletePosition - удаление элемента списка на позиции");

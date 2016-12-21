@@ -88,6 +88,22 @@ public class List {
         return unique;
     }
 
+    public int count () {
+        if (isEmpty()) {
+            return 0;
+        }
+
+        ListItem current = headItem;
+        int count = 1;
+
+        while (current.nextItem != null) {
+            count++;
+            current = current.nextItem;
+        }
+
+        return count;
+    }
+
     public void deleteHead() throws OutOfRangePositionException {
         if (isEmpty()) {
             throw new OutOfRangePositionException();
