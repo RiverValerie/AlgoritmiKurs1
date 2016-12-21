@@ -88,7 +88,7 @@ public class List {
         return unique;
     }
 
-    public int count () {
+    public int count() {
         if (isEmpty()) {
             return 0;
         }

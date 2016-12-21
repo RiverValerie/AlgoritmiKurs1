@@ -16,7 +16,7 @@ public class Main {
 
             System.out.println("0 - Выход из приложения");
             System.out.println("1 - Работа со списком");
-            System.out.println("2 - Сравнение двух списоков");
+            System.out.println("2 - Сравнение двух списков");
             System.out.println("\nВведите команду:");
 
             switch (reader.readLine()) {
@@ -152,7 +152,7 @@ public class Main {
         System.out.println("get - поиск элемента по позиции, возврат значения");
         System.out.println("isEmpty - проверка пустоты списка");
         System.out.println("print - вывод списка на экран");
-        System.out.println("\nnew - завершить работу с текущим списком списком и начать работу с новым");
+        System.out.println("\nnew - завершить работу с текущим списком и начать работу с новым");
         System.out.println("help - помощь");
         System.out.println("exit - выход в основное меню");
     }
@@ -319,6 +319,3 @@ public class Main {
         return list;
     }
 }
-
-
-
