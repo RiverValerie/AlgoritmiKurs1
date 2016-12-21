@@ -41,13 +41,13 @@ public class List {
 
         if (list1.isEmpty()) {
             System.out.print("Список 1 пуст, уникальные значения в Списке 2: ");
-            list2.print();
+            System.out.println(list2.toString());
             return;
         }
 
         if (list2.isEmpty()) {
             System.out.print("Список 2 пуст, уникальные значения в Списке 1: ");
-            list1.print();
+            System.out.println(list1.toString());
             return;
         }
 
@@ -56,7 +56,7 @@ public class List {
         if (compareList(list1, list2).isEmpty()) {
             System.out.println("нет");
         } else {
-            compareList(list1, list2).print();
+            System.out.println(compareList(list1, list2).toString());
         }
 
         System.out.print("Уникальные значения в Списке 2: ");
@@ -64,7 +64,7 @@ public class List {
         if (compareList(list2, list1).isEmpty()) {
             System.out.println("нет");
         } else {
-            compareList(list2, list1).print();
+            System.out.println(compareList(list2, list1).toString());
         }
     }
 
@@ -196,15 +196,16 @@ public class List {
         return headItem == null;
     }
 
-    public void print() {
+    @Override
+    public String toString() {
         ListItem current = headItem;
+        String s = "";
 
         while (current != null) {
-            System.out.print(current.data + " ");
+            s = s + current.data + " ";
             current = current.nextItem;
         }
-
-        System.out.println();
+        return s;
     }
 
     class ListItem {

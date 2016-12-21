@@ -122,7 +122,7 @@ public class Main {
                     if (list.isEmpty()) {
                         System.out.println("Список пустой: печать невозможна");
                     } else
-                        list.print();
+                        System.out.println(list.toString());
                     break;
                 case "help":
                     uiListActions();

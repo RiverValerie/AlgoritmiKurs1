@@ -14,16 +14,25 @@ class StackList implements Stack {
         stackList.addToHead(value);
     }
 
-    public int pop() throws EmptyStackException, NegativePositionException, OutOfRangePositionException {
+    public int pop() throws EmptyStackException {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        int headValue = stackList.get(0);
-        stackList.deleteHead();
-        return headValue;
+        try {
+            int headValue = stackList.get(0);
+            stackList.deleteHead();
+            return headValue;
+        } catch (OutOfRangePositionException | NegativePositionException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean isEmpty() {
         return stackList.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
