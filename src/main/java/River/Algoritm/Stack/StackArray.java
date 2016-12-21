@@ -4,8 +4,8 @@ import River.Algoritm.Stack.Exceptions.EmptyStackException;
 import River.Algoritm.Stack.Exceptions.StackOverflowExeption;
 
 public class StackArray implements Stack {
-    int[] stackArray;
-    int headIndex = -1;
+    private int[] stackArray;
+    private int headIndex = -1;
 
     public StackArray() {
         stackArray = new int[20];
@@ -16,7 +16,7 @@ public class StackArray implements Stack {
     }
 
     public void push(int value) throws StackOverflowExeption {
-        if (headIndex == stackArray.length-1){
+        if (headIndex == stackArray.length - 1) {
             throw new StackOverflowExeption();
         }
         headIndex = headIndex + 1;
@@ -31,5 +31,14 @@ public class StackArray implements Stack {
 
     public boolean isEmpty() {
         return headIndex == -1;
+    }
+
+    @Override
+    public String toString() {
+        String s = "";
+        for (int i = headIndex; i >= 0; i--) {
+            s = s + stackArray[i] + " ";
+        }
+        return s;
     }
 }

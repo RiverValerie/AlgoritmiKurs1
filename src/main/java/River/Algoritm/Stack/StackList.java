@@ -8,7 +8,7 @@ import River.Algoritm.Stack.Exceptions.EmptyStackException;
 
 class StackList implements Stack {
 
-    List stackList = new List();
+    private List stackList = new List();
 
     public void push(int value) {
         stackList.addToHead(value);
@@ -33,6 +33,6 @@ class StackList implements Stack {
 
     @Override
     public String toString() {
-        return super.toString();
+        return stackList.toString();
     }
 }
