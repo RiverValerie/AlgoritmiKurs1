@@ -5,9 +5,7 @@ import River.Algoritm.List.Exceptions.OutOfRangePositionException;
 import River.Algoritm.List.List;
 import River.Algoritm.Stack.Exceptions.EmptyStackException;
 
-
 class StackList implements Stack {
-
     private List stackList = new List();
 
     public boolean isEmpty() {

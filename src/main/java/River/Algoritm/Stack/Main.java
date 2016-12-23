@@ -2,7 +2,6 @@ package River.Algoritm.Stack;
 
 import River.Algoritm.Stack.Exceptions.EmptyStackException;
 import River.Algoritm.Stack.Exceptions.StackOverflowExeption;
-
 import java.util.Random;
 
 public class Main {
@@ -21,13 +20,13 @@ public class Main {
             sList.push(random2.nextInt(5));
         }
 
-        System.out.println("Статисеский стэк: " + sArray.toString());
+        System.out.println("Статический стек: " + sArray.toString());
         deleteEqualsFirst(sArray, new StackArray(20));
-        System.out.println("Статисеский стэк после удалений элементов равных первому: " + sArray.toString());
+        System.out.println("Статический стек после удалений элементов равных первому: " + sArray.toString());
 
-        System.out.println("\nДинамический стэк: " + sList.toString());
+        System.out.println("\nДинамический стек: " + sList.toString());
         deleteEqualsFirst(sList, new StackArray(20));
-        System.out.println("Динамический стэк после удалений элементов равных первому: " + sList.toString());
+        System.out.println("Динамический стек после удалений элементов равных первому: " + sList.toString());
     }
 
     private static void deleteEqualsFirst(Stack stack, Stack buffer) throws EmptyStackException, StackOverflowExeption {
