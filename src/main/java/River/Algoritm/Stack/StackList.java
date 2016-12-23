@@ -10,14 +10,15 @@ class StackList implements Stack {
 
     private List stackList = new List();
 
-    public void push(int value) {
-        stackList.addToHead(value);
+    public boolean isEmpty() {
+        return stackList.isEmpty();
     }
 
     public int pop() throws EmptyStackException {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
+
         try {
             int headValue = stackList.get(0);
             stackList.deleteHead();
@@ -27,8 +28,8 @@ class StackList implements Stack {
         }
     }
 
-    public boolean isEmpty() {
-        return stackList.isEmpty();
+    public void push(int value) {
+        stackList.addToHead(value);
     }
 
     @Override

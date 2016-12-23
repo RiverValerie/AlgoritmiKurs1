@@ -3,41 +3,48 @@ package River.Algoritm.Stack;
 import River.Algoritm.Stack.Exceptions.EmptyStackException;
 import River.Algoritm.Stack.Exceptions.StackOverflowExeption;
 
+import java.util.Random;
+
 public class Main {
     public static void main(String[] args) throws StackOverflowExeption, EmptyStackException {
         Stack sArray = new StackArray(20);
-        sArray.push(7);
-        sArray.push(6);
-        sArray.push(1);
-        sArray.push(5);
-        sArray.push(4);
-        sArray.push(1);
-        sArray.push(3);
-        sArray.push(2);
-        sArray.push(1);
+        Random random1 = new Random(13);
 
-        System.out.println(sArray.toString());
+        for (int i = 0; i <= 10; i++) {
+            sArray.push(random1.nextInt(5));
+        }
 
-        deleteEqualsFirst(sArray);
+        Stack sList = new StackList();
+        Random random2 = new Random(33);
 
-        System.out.println(sArray.toString());
+        for (int i = 0; i <= 10; i++) {
+            sList.push(random2.nextInt(5));
+        }
 
+        System.out.println("Статисеский стэк: " + sArray.toString());
+        deleteEqualsFirst(sArray, new StackArray(20));
+        System.out.println("Статисеский стэк после удалений элементов равных первому: " + sArray.toString());
+
+        System.out.println("\nДинамический стэк: " + sList.toString());
+        deleteEqualsFirst(sList, new StackArray(20));
+        System.out.println("Динамический стэк после удалений элементов равных первому: " + sList.toString());
     }
 
-    static void deleteEqualsFirst(Stack stack) throws EmptyStackException, StackOverflowExeption {
-        Stack temp = new StackList();
+    private static void deleteEqualsFirst(Stack stack, Stack buffer) throws EmptyStackException, StackOverflowExeption {
         int first;
         int current;
+
         if (!stack.isEmpty()) {
             first = stack.pop();
             while (!stack.isEmpty()) {
                 current = stack.pop();
                 if (current != first) {
-                    temp.push(current);
+                    buffer.push(current);
                 }
             }
-            while (!temp.isEmpty()) {
-                stack.push(temp.pop());
+
+            while (!buffer.isEmpty()) {
+                stack.push(buffer.pop());
             }
         }
     }

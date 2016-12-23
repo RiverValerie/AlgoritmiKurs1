@@ -4,9 +4,9 @@ import River.Algoritm.Stack.Exceptions.EmptyStackException;
 import River.Algoritm.Stack.Exceptions.StackOverflowExeption;
 
 public interface Stack {
-    void push(int value) throws StackOverflowExeption;
+    boolean isEmpty();
 
     int pop() throws EmptyStackException;
 
-    boolean isEmpty();
+    void push(int value) throws StackOverflowExeption;
 }

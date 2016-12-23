@@ -15,30 +15,36 @@ public class StackArray implements Stack {
         stackArray = new int[size];
     }
 
-    public void push(int value) throws StackOverflowExeption {
-        if (headIndex == stackArray.length - 1) {
-            throw new StackOverflowExeption();
-        }
-        headIndex = headIndex + 1;
-        stackArray[headIndex] = value;
+    public boolean isEmpty() {
+        return headIndex == -1;
     }
 
     public int pop() throws EmptyStackException {
-        if (isEmpty()) throw new EmptyStackException();
+        if (isEmpty()) {
+            throw new EmptyStackException();
+        }
+
         headIndex = headIndex - 1;
         return stackArray[headIndex + 1];
     }
 
-    public boolean isEmpty() {
-        return headIndex == -1;
+    public void push(int value) throws StackOverflowExeption {
+        if (headIndex == stackArray.length - 1) {
+            throw new StackOverflowExeption();
+        }
+
+        headIndex = headIndex + 1;
+        stackArray[headIndex] = value;
     }
 
     @Override
     public String toString() {
         String s = "";
+
         for (int i = headIndex; i >= 0; i--) {
             s = s + stackArray[i] + " ";
         }
+
         return s;
     }
 }
