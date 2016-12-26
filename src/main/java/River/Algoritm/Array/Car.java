@@ -1,15 +1,15 @@
 package River.Algoritm.Array;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 class Car {
     String sign;
     String mark;
     String owner;
-    Date dateLastRepair;
-    Date dateRepairTo;
+    LocalDate dateLastRepair;
+    LocalDate dateRepairTo;
 
-    public Car(String sign, String mark, String owner, Date dateLastRepair, Date dateRepairTo) {
+    public Car(String sign, String mark, String owner, LocalDate dateLastRepair, LocalDate dateRepairTo) {
         this.sign = sign;
         this.mark = mark;
         this.owner = owner;
@@ -19,12 +19,6 @@ class Car {
 
     @Override
     public String toString() {
-        return "Car{" +
-                "sign='" + sign + '\'' +
-                ", mark='" + mark + '\'' +
-                ", owner='" + owner + '\'' +
-                ", dateLastRepair=" + dateLastRepair +
-                ", dateRepairTo=" + dateRepairTo +
-                '}' + '\n';
+        return String.format("%-6s %-10s %-30s %-16tF %-18tF", sign, mark, owner, dateLastRepair, dateRepairTo);
     }
 }
