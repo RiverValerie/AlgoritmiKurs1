@@ -205,6 +205,7 @@ public class List {
             s = s + current.data + " ";
             current = current.nextItem;
         }
+
         return s;
     }
 
