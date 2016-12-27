@@ -27,6 +27,7 @@ public class Main {
 
         Car[] carsNotRepairedThisYear = new Car[cars.length];
         int index = 0;
+
         for (Car car : cars) {
             if (car.dateLastRepair.getYear() < LocalDate.now().getYear()) {
                 carsNotRepairedThisYear[index] = car;
@@ -35,6 +36,7 @@ public class Main {
         }
 
         System.out.println("Владельцы машин, не ремонтировавшихся с прошлого года:");
+
         for (Car car : carsNotRepairedThisYear) {
             if (car != null) {
                 System.out.println(car.owner);
@@ -44,6 +46,7 @@ public class Main {
 
     private static void printCarArray(Car[] cars) {
         System.out.printf("%-6s %-10s %-30s %-16s %-18s \n", "Номер", "Марка", "Владелец", "Последний ремонт", "Отремонтировать до");
+
         for (Car car : cars) {
             if (car != null) {
                 System.out.println(car.toString());

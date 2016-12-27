@@ -2,6 +2,7 @@ package River.Algoritm.Stack;
 
 import River.Algoritm.Stack.Exceptions.EmptyStackException;
 import River.Algoritm.Stack.Exceptions.StackOverflowExeption;
+
 import java.util.Random;
 
 public class Main {
@@ -35,8 +36,10 @@ public class Main {
 
         if (!stack.isEmpty()) {
             first = stack.pop();
+
             while (!stack.isEmpty()) {
                 current = stack.pop();
+
                 if (current != first) {
                     buffer.push(current);
                 }
