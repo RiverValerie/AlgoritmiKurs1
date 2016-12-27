@@ -1,9 +1,6 @@
 package River.Algoritm.Array;
 
-
 import java.time.LocalDate;
-import java.util.Comparator;
-
 import static River.Algoritm.Array.Sorts.carComparatorGenerator;
 
 public class Main {
@@ -21,11 +18,11 @@ public class Main {
                 new Car("Т845КМ", "Audi", "Иванов Игорь Сергеевич", LocalDate.parse("2015-05-12"), LocalDate.parse("2017-01-25")),
         };
 
+        System.out.println("Список машин в мастерской:");
         printCarArray(cars);
 
         String[] fields = {"owner"};
-        Comparator<Car> comparator = carComparatorGenerator(fields);
-        Sorts.sortShell(cars, comparator);
+        Sorts.sortShell(cars, carComparatorGenerator(fields));
 
         Car[] carsNotRepairedThisYear = new Car[cars.length];
         int index = 0;
@@ -36,6 +33,7 @@ public class Main {
             }
         }
 
+        System.out.println("Владельцы машин, не ремонтировавшихся с прошлого года:");
         for (Car car : carsNotRepairedThisYear) {
             if (car != null) {
                 System.out.println(car.owner);
@@ -50,6 +48,7 @@ public class Main {
                 System.out.println(car.toString());
             }
         }
+
         System.out.println();
     }
 }

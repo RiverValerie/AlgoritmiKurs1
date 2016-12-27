@@ -3,6 +3,8 @@ package River.Algoritm.Array;
 import java.util.Comparator;
 
 public class Sorts {
+    private static Comparator<Car> emptyCarComparator = (o1, o2) -> 0;
+
     public static Comparator<Car> carComparatorGenerator(String[] fields) throws Exception {
         Comparator<Car> carComparator = emptyCarComparator;
 
@@ -31,19 +33,13 @@ public class Sorts {
         return carComparator;
     }
 
-    private static Comparator<Car> emptyCarComparator = (o1, o2) -> 0;
-
-    public static void sortShell(Object[] array, Comparator comparator) {
-        for (int d = array.length / 2; d > 0; d = d / 2) {
-            for (int i = d; i < array.length; i++) {
-                for (int j = i; j >= d; j = j - d) {
-                    Object temp = array[j];
-                    if (comparator.compare(temp, array[j - d]) >= 0) {
-                        break;
-                    }
-
-                    array[j] = array[j - d];
-                    array[j - d] = temp;
+    public static void sortExchange(Object[] array, Comparator comparator) {
+        for (int i = 1; i < array.length; i++) {
+            for (int j = 0; j < array.length - i; j++) {
+                if (comparator.compare(array[j], array[j + 1]) > 0) {
+                    Object temp = array[j + 1];
+                    array[j + 1] = array[j];
+                    array[j] = temp;
                 }
             }
         }
@@ -79,13 +75,17 @@ public class Sorts {
         }
     }
 
-    public static void sortExchange(Object[] array, Comparator comparator) {
-        for (int i = 1; i < array.length; i++) {
-            for (int j = 0; j < array.length - i; j++) {
-                if (comparator.compare(array[j], array[j + 1]) > 0) {
-                    Object temp = array[j + 1];
-                    array[j + 1] = array[j];
-                    array[j] = temp;
+    public static void sortShell(Object[] array, Comparator comparator) {
+        for (int d = array.length / 2; d > 0; d = d / 2) {
+            for (int i = d; i < array.length; i++) {
+                for (int j = i; j >= d; j = j - d) {
+                    Object temp = array[j];
+                    if (comparator.compare(temp, array[j - d]) >= 0) {
+                        break;
+                    }
+
+                    array[j] = array[j - d];
+                    array[j - d] = temp;
                 }
             }
         }
